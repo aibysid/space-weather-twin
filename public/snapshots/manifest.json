@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "generatedAtUtc": "2026-10-10T14:00:52.352Z",
+  "feeds": {
+    "wind": {
+      "retrievedAtUtc": "2026-10-10T14:00:53.621Z",
+      "sha256": "8d777877645eaaf6d7ba2031458300c5d62de1df3a229419e367911321bcc2f6",
+      "status": "updated"
+    },
+    "mag": {
+      "retrievedAtUtc": "2026-10-10T14:00:54.104Z",
+      "sha256": "d3b484fb4972fad29f61ca0301f55ff705bc250f70df9aca186ff3639c529abb",
+      "status": "updated"
+    },
+    "scales": {
+      "retrievedAtUtc": "2026-10-10T14:00:54.408Z",
+      "sha256": "7d6f82a3633542ccfd22d054cf459542dd679fddbde6e6678bd160b3c1664eb4",
+      "status": "updated"
+    },
+    "kp": {
+      "retrievedAtUtc": "2026-10-10T14:00:54.647Z",
+      "sha256": "2e6c9fcf3d497cb953ed84a857918044757475c5bd6c1afeb5e133332d759bb9",
+      "status": "updated"
+    },
+    "forecast": {
+      "retrievedAtUtc": "2026-10-10T14:00:54.828Z",
+      "sha256": "c7763a186e30e1a4758794b150c9882a8ea93c40bf3bd8e98b9e8ee89c95db69",
+      "status": "updated"
+    },
+    "xray": {
+      "retrievedAtUtc": "2026-10-10T14:00:55.122Z",
+      "sha256": "ea5a7a95113f43a00b993be9b43dbed83795c8c3478bc354a5063543c3128afc",
+      "status": "updated"
+    },
+    "proton": {
+      "retrievedAtUtc": "2026-10-10T14:00:55.407Z",
+      "sha256": "9a3963fc095fc227aeea540521211daaa373d1e7627df0b14795887efba47c9f",
+      "status": "updated"
+    },
+    "aurora": {
+      "retrievedAtUtc": "2026-10-10T14:00:55.670Z",
+      "sha256": "cf58acad75a9b8e144b256b47c89a08ddef197b11e7f5c08c3099aecb5661a11",
+      "status": "updated"
+    }
+  }
+}

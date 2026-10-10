@@ -1,0 +1,63 @@
+name: Refresh fallback snapshots
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Restore last valid snapshots
+        run: |
+          if git ls-remote --exit-code --heads origin data-cache; then
+            git fetch origin data-cache
+            git archive origin/data-cache public/snapshots | tar -x
+          fi
+      - run: npm ci
+      - run: npm run snapshot:build
+      - name: Persist latest snapshot set
+        run: |
+          cp -R public/snapshots /tmp/swt-snapshots
+          git worktree add --detach /tmp/swt-cache
+          cd /tmp/swt-cache
+          git checkout --orphan cache-next
+          git rm -rf .
+          mkdir -p public
+          cp -R /tmp/swt-snapshots public/snapshots
+          git add public/snapshots
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git commit -m "Latest validated snapshots"
+          git push origin HEAD:data-cache --force
+      - run: npm test
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    needs: refresh
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment

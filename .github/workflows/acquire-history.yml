@@ -1,0 +1,17 @@
+name: Acquire NASA history
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm run history:build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nasa-history
+          path: public/history

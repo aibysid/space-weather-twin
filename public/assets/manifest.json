@@ -1,0 +1,8 @@
+{
+  "source": "Natural Earth 1:110m land",
+  "version": "5.1.2",
+  "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_110m_land.geojson",
+  "license": "Public domain",
+  "sha256": "9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9",
+  "retrievedAtUtc": "2026-10-10T14:01:14.134Z"
+}
