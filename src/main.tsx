@@ -513,12 +513,40 @@ function App() {
     chartHeading.current?.focus();
   };
   function exportData(csv = false) {
+    const hours =
+      mode === "Replay"
+        ? Math.max(range, (bounds.end - bounds.start) / 3600000)
+        : metric === "kp"
+          ? 168
+          : range;
+    const exportSamples = chartSamples.filter(
+      (s) => s.time >= end - hours * 3600000 && s.time <= end,
+    );
+    const safeJson = (value: unknown) =>
+      JSON.stringify(
+        value,
+        (_key, v) => {
+          if (typeof v === "number" && !Number.isFinite(v))
+            throw new Error("Export rejected non-finite source metadata.");
+          return v;
+        },
+        2,
+      );
+    const boundedDownload = (
+      filename: string,
+      content: string,
+      type: string,
+    ) => {
+      if (new TextEncoder().encode(content).length > 15000000)
+        throw new Error("Export exceeds 15 MB. Choose a smaller chart range.");
+      download(filename, content, type);
+    };
     const metadata = {
       schemaVersion: 1,
       appVersion: "1.0.0",
       mode,
       generatedAtUtc: new Date().toISOString(),
-      selectedClockUtc: utc(clock),
+      selectedClockUtc: new Date(clock).toISOString(),
       sourceEnvelopes:
         mode === "Replay"
           ? [
@@ -533,7 +561,7 @@ function App() {
       selectedRecords: mode === "Scenario" ? null : selections,
       providerForecastRecords:
         mode === "Live" ? states.forecast.data?.samples : undefined,
-      records: chartSamples,
+      records: exportSamples,
       aurora:
         mode === "Live" && route === "aurora"
           ? {
@@ -562,6 +590,13 @@ function App() {
           cme: mode === "Scenario" ? cme : null,
         },
         methods,
+        units: {
+          pressure: "nPa",
+          proxy: "mV/m",
+          transport: "s",
+          cmeDuration: "s",
+          cmeArrival: "UTC epoch milliseconds",
+        },
         evidenceType: mode === "Scenario" ? "Scenario" : "Calculation",
       },
       appliedScenario: mode === "Scenario" ? scenario : null,
@@ -573,23 +608,23 @@ function App() {
       ],
     };
     const name = `space-weather-twin_${mode.toLowerCase()}_${new Date(clock).toISOString().replaceAll(":", "").replace(".000", "")}`;
-    if (csv) {
-      download(
-        name + ".csv",
-        exportSerializers(chartSamples),
-        "text/csv;charset=utf-8",
-      );
-      download(
-        name + "_metadata.json",
-        JSON.stringify({ ...metadata, records: undefined }, null, 2),
-        "application/json",
-      );
-    } else
-      download(
-        name + ".json",
-        JSON.stringify(metadata, null, 2),
-        "application/json",
-      );
+    try {
+      if (csv) {
+        boundedDownload(
+          name + ".csv",
+          exportSerializers(exportSamples),
+          "text/csv;charset=utf-8",
+        );
+        boundedDownload(
+          name + "_metadata.json",
+          safeJson({ ...metadata, records: undefined }),
+          "application/json",
+        );
+      } else
+        boundedDownload(name + ".json", safeJson(metadata), "application/json");
+    } catch (e) {
+      setMessage(e instanceof Error ? e.message : "Export failed.");
+    }
   }
   function share() {
     const values: Record<string, string | number> = {

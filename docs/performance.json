@@ -1,15 +1,15 @@
 {
-  "testedAtUtc": "2026-10-10T17:05:13.471Z",
+  "testedAtUtc": "2026-10-10T17:11:04.355Z",
   "measurement": "Node gzip of production assets; desktop build budget, not physical mobile performance certification",
-  "initialShellGzipBytes": 224222,
-  "lazySceneGzipBytes": 241074,
-  "siteBytes": 7161896,
+  "initialShellGzipBytes": 224721,
+  "lazySceneGzipBytes": 241079,
+  "siteBytes": 7163680,
   "dataGzipBytes": 530595,
   "files": [
     {
-      "path": "dist/assets/Scene-DNCd9Ny7.js",
-      "bytes": 915025,
-      "gzipBytes": 241074
+      "path": "dist/assets/Scene-DAYQxPhY.js",
+      "bytes": 915031,
+      "gzipBytes": 241079
     },
     {
       "path": "dist/assets/THIRD_PARTY_LICENSES.txt",
@@ -17,14 +17,14 @@
       "gzipBytes": 2442
     },
     {
-      "path": "dist/assets/index-Bx_YhCUT.js",
-      "bytes": 494726,
-      "gzipBytes": 167134
+      "path": "dist/assets/index-BFkPNI3U.css",
+      "bytes": 12854,
+      "gzipBytes": 3523
     },
     {
-      "path": "dist/assets/index-wK9b6qeM.css",
-      "bytes": 12773,
-      "gzipBytes": 3499
+      "path": "dist/assets/index-BZuEZWBc.js",
+      "bytes": 496423,
+      "gzipBytes": 167610
     },
     {
       "path": "dist/assets/land.json",
@@ -74,7 +74,7 @@
     {
       "path": "dist/index.html",
       "bytes": 841,
-      "gzipBytes": 494
+      "gzipBytes": 493
     },
     {
       "path": "dist/snapshots/aurora.json",
