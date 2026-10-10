@@ -1,5 +1,44 @@
-import {it,expect} from 'vitest';
-import {readFileSync} from 'node:fs';
-import {createHash} from 'node:crypto';
-const sha=(s:string)=>createHash('sha256').update(s).digest('hex');
-for(const id of ['may2024','halloween2003','quiet2024'])it(`A12 A13 validates every raw NASA ${id} row and five independent spot comparisons`,()=>{const raw=readFileSync(`public/history/${id}.raw.json`,'utf8'),n=JSON.parse(readFileSync(`public/history/${id}.json`,'utf8')),r=JSON.parse(raw);expect(sha(raw)).toBe(n.manifest.rawSHA256);expect(sha(JSON.stringify(n.records))).toBe(n.manifest.normalizedSHA256);expect(n.records.length).toBe(id==='quiet2024'?48:120);for(const record of n.records){const row=r.data.find((x:any)=>x[0]===record.timeUtc);expect(row).toBeTruthy();for(const [metric,name]of Object.entries({bz:'BZ_GSM1800',density:'N1800',speed:'V1800',kp:'KP1800'})){const i=r.parameters.findIndex((p:any)=>p.name===name),fill=Number(r.parameters[i].fill);expect(record[metric]).toBe(row[i]===fill?null:metric==='kp'?row[i]/10:row[i]===0?0:row[i])}expect(new Date(record.time).getUTCMinutes()).toBe(30)}const indices=[0,Math.floor(n.records.length/4),Math.floor(n.records.length/2),Math.floor(n.records.length*3/4),n.records.length-1];expect(indices.map(i=>n.records[i].timeUtc).length).toBe(5)});
+import { it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+const sha = (s: string) => createHash("sha256").update(s).digest("hex");
+for (const id of ["may2024", "halloween2003", "quiet2024"])
+  it(`A12 A13 validates every raw NASA ${id} row and five independent spot comparisons`, () => {
+    const raw = readFileSync(`public/history/${id}.raw.json`, "utf8"),
+      n = JSON.parse(readFileSync(`public/history/${id}.json`, "utf8")),
+      r = JSON.parse(raw);
+    expect(sha(raw)).toBe(n.manifest.rawSHA256);
+    expect(sha(JSON.stringify(n.records))).toBe(n.manifest.normalizedSHA256);
+    expect(n.records.length).toBe(id === "quiet2024" ? 48 : 120);
+    for (const record of n.records) {
+      const row = r.data.find((x: any) => x[0] === record.timeUtc);
+      expect(row).toBeTruthy();
+      for (const [metric, name] of Object.entries({
+        bz: "BZ_GSM1800",
+        density: "N1800",
+        speed: "V1800",
+        kp: "KP1800",
+      })) {
+        const i = r.parameters.findIndex((p: any) => p.name === name),
+          fill = Number(r.parameters[i].fill);
+        expect(record[metric]).toBe(
+          row[i] === fill
+            ? null
+            : metric === "kp"
+              ? row[i] / 10
+              : row[i] === 0
+                ? 0
+                : row[i],
+        );
+      }
+      expect(new Date(record.time).getUTCMinutes()).toBe(30);
+    }
+    const indices = [
+      0,
+      Math.floor(n.records.length / 4),
+      Math.floor(n.records.length / 2),
+      Math.floor((n.records.length * 3) / 4),
+      n.records.length - 1,
+    ];
+    expect(indices.map((i) => n.records[i].timeUtc).length).toBe(5);
+  });

@@ -1,7 +1,62 @@
-import {mkdir,readFile,writeFile,rename} from 'node:fs/promises';
-import {createHash} from 'node:crypto';
-import {feeds} from './registry.mjs';
-import {adapt} from '../src/adapters.ts';
-const dir=new URL('../public/snapshots/',import.meta.url);await mkdir(dir,{recursive:true});const manifest={schemaVersion:1,generatedAtUtc:new Date().toISOString(),feeds:{}};
-for(const [id,path] of Object.entries(feeds)){try{const r=await fetch('https://services.swpc.noaa.gov'+path,{signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error('HTTP '+r.status);const text=await r.text();if(Buffer.byteLength(text)>15000000)throw Error('size limit');const raw=JSON.parse(text),retrievedAtUtc=new Date().toISOString();const normalized=adapt(id,raw,retrievedAtUtc,'snapshot');if(!normalized.envelope.recordCount||normalized.samples.length&&normalized.samples.every(s=>s.quality==='rejected'))throw Error('empty or rejected');const payload=JSON.stringify({raw,retrievedAtUtc,sourceUrl:'https://services.swpc.noaa.gov'+path,adapterVersion:normalized.envelope.adapterVersion});const temp=new URL(id+'.tmp',dir);await writeFile(temp,payload);await rename(temp,new URL(id+'.json',dir));manifest.feeds[id]={retrievedAtUtc,sha256:createHash('sha256').update(payload).digest('hex'),status:'updated'};console.log(id,'updated')}catch(e){let prior;try{prior=JSON.parse(await readFile(new URL(id+'.json',dir),'utf8'))}catch{ /* No prior valid snapshot. */ }manifest.feeds[id]={status:prior?'retained':'unavailable',retrievedAtUtc:prior?.retrievedAtUtc||null,error:e.message};console.log(id,manifest.feeds[id].status,e.message)}}
-await writeFile(new URL('manifest.json',dir),JSON.stringify(manifest,null,2));
+import { mkdir, readFile, writeFile, rename } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { feeds } from "./registry.mjs";
+import { adapt } from "../src/adapters.ts";
+const dir = new URL("../public/snapshots/", import.meta.url);
+await mkdir(dir, { recursive: true });
+const manifest = {
+  schemaVersion: 1,
+  generatedAtUtc: new Date().toISOString(),
+  feeds: {},
+};
+for (const [id, path] of Object.entries(feeds)) {
+  try {
+    const r = await fetch("https://services.swpc.noaa.gov" + path, {
+      signal: AbortSignal.timeout(20000),
+    });
+    if (!r.ok) throw Error("HTTP " + r.status);
+    const text = await r.text();
+    if (Buffer.byteLength(text) > 15000000) throw Error("size limit");
+    const raw = JSON.parse(text),
+      retrievedAtUtc = new Date().toISOString();
+    const normalized = adapt(id, raw, retrievedAtUtc, "snapshot");
+    if (
+      !normalized.envelope.recordCount ||
+      (normalized.samples.length &&
+        normalized.samples.every((s) => s.quality === "rejected"))
+    )
+      throw Error("empty or rejected");
+    const payload = JSON.stringify({
+      raw,
+      retrievedAtUtc,
+      sourceUrl: "https://services.swpc.noaa.gov" + path,
+      adapterVersion: normalized.envelope.adapterVersion,
+    });
+    const temp = new URL(id + ".tmp", dir);
+    await writeFile(temp, payload);
+    await rename(temp, new URL(id + ".json", dir));
+    manifest.feeds[id] = {
+      retrievedAtUtc,
+      sha256: createHash("sha256").update(payload).digest("hex"),
+      status: "updated",
+    };
+    console.log(id, "updated");
+  } catch (e) {
+    let prior;
+    try {
+      prior = JSON.parse(await readFile(new URL(id + ".json", dir), "utf8"));
+    } catch {
+      /* No prior valid snapshot. */
+    }
+    manifest.feeds[id] = {
+      status: prior ? "retained" : "unavailable",
+      retrievedAtUtc: prior?.retrievedAtUtc || null,
+      error: e.message,
+    };
+    console.log(id, manifest.feeds[id].status, e.message);
+  }
+}
+await writeFile(
+  new URL("manifest.json", dir),
+  JSON.stringify(manifest, null, 2),
+);

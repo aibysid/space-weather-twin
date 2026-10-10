@@ -1,4 +1,85 @@
-import type {Sample} from './adapters';
-export function exportSerializers(samples:Sample[]){const cell=(v:unknown)=>{if(typeof v==='number')return Number.isFinite(v)?String(v):'';let s=v==null?'':String(v);if(/^[=+\-−@]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"'};return ['timestamp_utc,metric,value,unit,spacecraft,evidence_type,time_basis,quality,source_url',...samples.map(s=>[s.timeUtc,s.metric,s.value,s.unit,s.spacecraft,s.evidenceType,s.timeBasis,s.quality,s.sourceUrl].map(cell).join(','))].join('\r\n')+'\r\n'}
-export function download(name:string,content:string,type:string){const url=URL.createObjectURL(new Blob([content],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
-export async function screenshot(svg:SVGSVGElement|HTMLCanvasElement,lines:string[]){let url:string;if(svg instanceof HTMLCanvasElement){url=svg.toDataURL('image/png')}else{const clone=svg.cloneNode(true) as SVGSVGElement;clone.setAttribute('xmlns','http://www.w3.org/2000/svg');const serialized=new XMLSerializer().serializeToString(clone);url=URL.createObjectURL(new Blob([serialized],{type:'image/svg+xml'}))}try{const img=new Image();await new Promise<void>((resolve,reject)=>{img.onload=()=>resolve();img.onerror=()=>reject(Error('Screenshot is unsupported. Use JSON or CSV.'));img.src=url});const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=1100;const ctx=canvas.getContext('2d');if(!ctx)throw Error('Canvas unsupported. Use JSON or CSV.');ctx.fillStyle='#080D18';ctx.fillRect(0,0,1600,1100);ctx.drawImage(img,0,0,1600,800);ctx.fillStyle='#F3F6FC';ctx.font='22px sans-serif';lines.slice(0,9).forEach((line,i)=>ctx.fillText(line.slice(0,135),40,845+i*28));const blob=await new Promise<Blob|null>(r=>canvas.toBlob(r));if(!blob)throw Error('Image capture failed. Use JSON or CSV.');const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='space-weather-twin_view.png';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}finally{URL.revokeObjectURL(url)}}
+import type { Sample } from "./adapters";
+export function exportSerializers(samples: Sample[]) {
+  const cell = (v: unknown) => {
+    if (typeof v === "number") return Number.isFinite(v) ? String(v) : "";
+    let s = v == null ? "" : String(v);
+    if (/^[=+\-−@]/.test(s)) s = "'" + s;
+    return '"' + s.replaceAll('"', '""') + '"';
+  };
+  return (
+    [
+      "timestamp_utc,metric,value,unit,spacecraft,evidence_type,time_basis,quality,source_url",
+      ...samples.map((s) =>
+        [
+          s.timeUtc,
+          s.metric,
+          s.value,
+          s.unit,
+          s.spacecraft,
+          s.evidenceType,
+          s.timeBasis,
+          s.quality,
+          s.sourceUrl,
+        ]
+          .map(cell)
+          .join(","),
+      ),
+    ].join("\r\n") + "\r\n"
+  );
+}
+export function download(name: string, content: string, type: string) {
+  const url = URL.createObjectURL(new Blob([content], { type })),
+    a = document.createElement("a");
+  a.href = url;
+  a.download = name;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+export async function screenshot(
+  svg: SVGSVGElement | HTMLCanvasElement,
+  lines: string[],
+) {
+  let url: string;
+  if (svg instanceof HTMLCanvasElement) {
+    url = svg.toDataURL("image/png");
+  } else {
+    const clone = svg.cloneNode(true) as SVGSVGElement;
+    clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    const serialized = new XMLSerializer().serializeToString(clone);
+    url = URL.createObjectURL(
+      new Blob([serialized], { type: "image/svg+xml" }),
+    );
+  }
+  try {
+    const img = new Image();
+    await new Promise<void>((resolve, reject) => {
+      img.onload = () => resolve();
+      img.onerror = () =>
+        reject(Error("Screenshot is unsupported. Use JSON or CSV."));
+      img.src = url;
+    });
+    const canvas = document.createElement("canvas");
+    canvas.width = 1600;
+    canvas.height = 1100;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) throw Error("Canvas unsupported. Use JSON or CSV.");
+    ctx.fillStyle = "#080D18";
+    ctx.fillRect(0, 0, 1600, 1100);
+    ctx.drawImage(img, 0, 0, 1600, 800);
+    ctx.fillStyle = "#F3F6FC";
+    ctx.font = "22px sans-serif";
+    lines
+      .slice(0, 9)
+      .forEach((line, i) => ctx.fillText(line.slice(0, 135), 40, 845 + i * 28));
+    const blob = await new Promise<Blob | null>((r) => canvas.toBlob(r));
+    if (!blob) throw Error("Image capture failed. Use JSON or CSV.");
+    const u = URL.createObjectURL(blob),
+      a = document.createElement("a");
+    a.href = u;
+    a.download = "space-weather-twin_view.png";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(u), 1000);
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+}

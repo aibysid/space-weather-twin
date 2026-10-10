@@ -1,0 +1,204 @@
+{
+  "testedAtUtc": "2026-10-10T17:05:34.009Z",
+  "origin": "https://aibysid.github.io",
+  "browser": "156.0.8078.4",
+  "method": "Fresh Chromium context, native anonymous browser fetch from deployed Pages origin; no proxy, key or fixture interception",
+  "responses": [
+    {
+      "id": "wind",
+      "status": 200,
+      "responseType": "cors",
+      "sourceUrl": "https://services.swpc.noaa.gov/json/rtsw/rtsw_wind_1m.json",
+      "retrievedAtUtc": "2026-10-10T17:05:33.898Z",
+      "records": 3731,
+      "fields": [
+        "time_tag",
+        "active",
+        "source",
+        "proton_speed",
+        "proton_temperature",
+        "proton_density",
+        "proton_vx_gse",
+        "proton_vy_gse",
+        "proton_vz_gse",
+        "proton_vx_gsm",
+        "proton_vy_gsm",
+        "proton_vz_gsm",
+        "proton_sample_size",
+        "alpha_speed",
+        "alpha_temperature",
+        "alpha_density",
+        "alpha_vx_gse",
+        "alpha_vy_gse",
+        "alpha_vz_gse",
+        "alpha_vx_gsm",
+        "alpha_vy_gsm",
+        "alpha_vz_gsm",
+        "alpha_sample_size",
+        "max_convergence_flag",
+        "max_data_flag",
+        "max_error_count_flag",
+        "max_processing_flag",
+        "max_range_flag",
+        "max_sample_count_flag",
+        "max_telemetry_flag",
+        "overall_quality"
+      ]
+    },
+    {
+      "id": "mag",
+      "status": 200,
+      "responseType": "cors",
+      "sourceUrl": "https://services.swpc.noaa.gov/json/rtsw/rtsw_mag_1m.json",
+      "retrievedAtUtc": "2026-10-10T17:05:33.702Z",
+      "records": 3699,
+      "fields": [
+        "time_tag",
+        "active",
+        "source",
+        "range",
+        "scale",
+        "sensitivity",
+        "manual_mode",
+        "sample_size",
+        "bt",
+        "bx_gse",
+        "by_gse",
+        "bz_gse",
+        "theta_gse",
+        "phi_gse",
+        "bx_gsm",
+        "by_gsm",
+        "bz_gsm",
+        "theta_gsm",
+        "phi_gsm",
+        "max_telemetry_flag",
+        "max_data_flag",
+        "overall_quality"
+      ]
+    },
+    {
+      "id": "scales",
+      "status": 200,
+      "responseType": "cors",
+      "sourceUrl": "https://services.swpc.noaa.gov/products/noaa-scales.json",
+      "retrievedAtUtc": "2026-10-10T17:05:33.271Z",
+      "records": 1,
+      "fields": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "-1"
+      ]
+    },
+    {
+      "id": "kp",
+      "status": 200,
+      "responseType": "cors",
+      "sourceUrl": "https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json",
+      "retrievedAtUtc": "2026-10-10T17:05:33.815Z",
+      "records": 61,
+      "fields": [
+        "time_tag",
+        "Kp",
+        "a_running",
+        "station_count"
+      ]
+    },
+    {
+      "id": "forecast",
+      "status": 200,
+      "responseType": "cors",
+      "sourceUrl": "https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json",
+      "retrievedAtUtc": "2026-10-10T17:05:33.271Z",
+      "records": 81,
+      "fields": [
+        "time_tag",
+        "kp",
+        "observed",
+        "noaa_scale"
+      ]
+    },
+    {
+      "id": "xray",
+      "status": 200,
+      "responseType": "cors",
+      "sourceUrl": "https://services.swpc.noaa.gov/json/goes/primary/xrays-1-day.json",
+      "retrievedAtUtc": "2026-10-10T17:05:33.815Z",
+      "records": 2876,
+      "fields": [
+        "time_tag",
+        "satellite",
+        "flux",
+        "observed_flux",
+        "electron_correction",
+        "electron_contaminaton",
+        "energy"
+      ]
+    },
+    {
+      "id": "proton",
+      "status": 200,
+      "responseType": "cors",
+      "sourceUrl": "https://services.swpc.noaa.gov/json/goes/primary/integral-protons-1-day.json",
+      "retrievedAtUtc": "2026-10-10T17:05:34.005Z",
+      "records": 2296,
+      "fields": [
+        "time_tag",
+        "satellite",
+        "flux",
+        "energy"
+      ]
+    },
+    {
+      "id": "aurora",
+      "status": 200,
+      "responseType": "cors",
+      "sourceUrl": "https://services.swpc.noaa.gov/json/ovation_aurora_latest.json",
+      "retrievedAtUtc": "2026-10-10T17:05:33.994Z",
+      "records": 65160,
+      "fields": [
+        "Observation Time",
+        "Forecast Time",
+        "Data Format",
+        "coordinates",
+        "type"
+      ],
+      "auroraTimes": {
+        "observation": "2026-10-10T16:55:00Z",
+        "forecast": "2026-10-10T17:40:00Z"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "route": "live",
+      "title": "A connected view of space weather",
+      "noOverflow": true
+    },
+    {
+      "route": "aurora",
+      "title": "Aurora forecast",
+      "noOverflow": true
+    },
+    {
+      "route": "replay",
+      "title": "Replay observations",
+      "noOverflow": true
+    },
+    {
+      "route": "lab",
+      "title": "What if conditions changed?",
+      "noOverflow": true
+    },
+    {
+      "route": "sources",
+      "title": "Know what you’re looking at",
+      "noOverflow": true
+    }
+  ],
+  "errors": [],
+  "backForwardWorks": true,
+  "mobileNoOverflow": true
+}

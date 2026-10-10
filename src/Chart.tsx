@@ -1,13 +1,195 @@
-import {useEffect,useRef} from 'react';
-import uPlot from 'uplot';
-import 'uplot/dist/uPlot.min.css';
-import {type Sample} from './adapters';
-import {metrics,type Metric} from './registry';
-export function decimate(a:Sample[],limit=1500):Sample[]{if(a.length<=limit)return a;const out:Sample[]=[];const size=Math.ceil(a.length/(limit/3));for(let i=0;i<a.length;i+=size){const bucket=a.slice(i,i+size);const rejected=bucket.find(s=>s.quality==='rejected'||s.value===null);const valid=bucket.filter(s=>s.value!==null&&s.quality!=='rejected');if(rejected)out.push(rejected);if(valid.length){const min=valid.reduce((x,y)=>x.value!<y.value!?x:y),max=valid.reduce((x,y)=>x.value!>y.value!?x:y);out.push(min);if(max.id!==min.id)out.push(max)}}return out.sort((x,y)=>x.time-y.time).slice(0,limit)}
-export function Chart({samples,metric,cursor,onCursor,range,end}:{samples:Sample[];metric:Metric;cursor:number|null;onCursor:(t:number)=>void;range:number;end:number}){
- const host=useRef<HTMLDivElement>(null),plot=useRef<uPlot|null>(null);const onRef=useRef(onCursor);onRef.current=onCursor;
- useEffect(()=>{if(!host.current)return;const a=decimate(samples.filter(s=>s.time>=end-range*3600000&&s.time<=end));const times:number[]=[],values:(number|null)[]=[];let previous:Sample|null=null;const gap=metric==='kp'?3*3600000: samples[0]?.timeBasis==='bowShockShifted'?90*60000:metric==='proton'?20*60000:10*60000;for(const s of a){if(previous&&(s.time-previous.time>gap||s.spacecraft!==previous.spacecraft)){times.push((previous.time+s.time)/2000);values.push(null)}times.push(s.time/1000);values.push(s.quality==='rejected'?null:s.value);previous=s}
- const log=metric==='xray'||metric==='proton';const p=new uPlot({width:host.current.clientWidth||500,height:155,legend:{show:false},cursor:{drag:{x:false,y:false}},scales:{x:{time:true,min:(end-range*3600000)/1000,max:end/1000},y:log?{distr:3}:{}},axes:[{stroke:'#B8C6DB',font:'12px sans-serif',grid:{stroke:'#26354a'},values:(_u,ticks)=>ticks.map(t=>new Date(t*1000).toISOString().slice(11,16))},{stroke:'#B8C6DB',font:'12px sans-serif',grid:{stroke:'#26354a'},size:65}],series:[{}, {label:metrics[metric][0],stroke:metric==='bz'?'#EAA1EF':'#65DCF2',width:1.5,dash:a.some(s=>s.evidenceType==='forecast')?[6,4]:undefined,spanGaps:false}],hooks:{setCursor:[u=>{if(u.cursor.idx!=null&&times[u.cursor.idx])onRef.current(times[u.cursor.idx]*1000)}],draw:[u=>{const ctx=u.ctx;ctx.save();if(metric==='bz'){ctx.strokeStyle='#B8C6DB';ctx.setLineDash([5,5]);const y=u.valToPos(0,'y',true);ctx.beginPath();ctx.moveTo(u.bbox.left,y);ctx.lineTo(u.bbox.left+u.bbox.width,y);ctx.stroke()}const boundary=a.find(s=>s.evidenceType==='forecast')?.time;if(boundary){ctx.fillStyle='#f7b65d18';const x=u.valToPos(boundary/1000,'x',true);ctx.fillRect(x,u.bbox.top,u.bbox.left+u.bbox.width-x,u.bbox.height)}ctx.restore()}]}},[times,values],host.current);plot.current=p;const observer=new ResizeObserver(()=>{if(host.current)p.setSize({width:host.current.clientWidth,height:155})});observer.observe(host.current);return()=>{observer.disconnect();p.destroy();plot.current=null}},[samples,metric,range,end]);
- useEffect(()=>{if(cursor!==null&&plot.current){plot.current.setCursor({left:plot.current.valToPos(cursor/1000,'x'),top:60},false)}},[cursor]);
- return <div className="chart" aria-label={`${metrics[metric][0]} chart; ${metrics[metric][1]}. UTC axis. Use previous and next sample controls or data table.`}><div className="chart-heading"><b>{metrics[metric][0]}</b><span>{metrics[metric][1]} · UTC · {samples.length>1500?'Min/max reduced display':'Full display resolution'}</span></div><div ref={host}/></div>
+import { useEffect, useRef } from "react";
+import uPlot from "uplot";
+import "uplot/dist/uPlot.min.css";
+import { type Sample } from "./adapters";
+import { metrics, type Metric } from "./registry";
+export function decimate(a: Sample[], limit = 1500): Sample[] {
+  if (a.length <= limit) return a;
+  const out: Sample[] = [];
+  const size = Math.ceil(a.length / (limit / 3));
+  for (let i = 0; i < a.length; i += size) {
+    const bucket = a.slice(i, i + size);
+    const rejected = bucket.find(
+      (s) => s.quality === "rejected" || s.value === null,
+    );
+    const valid = bucket.filter(
+      (s) => s.value !== null && s.quality !== "rejected",
+    );
+    if (rejected) out.push(rejected);
+    if (valid.length) {
+      const min = valid.reduce((x, y) => (x.value! < y.value! ? x : y)),
+        max = valid.reduce((x, y) => (x.value! > y.value! ? x : y));
+      out.push(min);
+      if (max.id !== min.id) out.push(max);
+    }
+  }
+  return out.sort((x, y) => x.time - y.time).slice(0, limit);
+}
+export function Chart({
+  samples,
+  metric,
+  cursor,
+  onCursor,
+  range,
+  end,
+}: {
+  samples: Sample[];
+  metric: Metric;
+  cursor: number | null;
+  onCursor: (t: number) => void;
+  range: number;
+  end: number;
+}) {
+  const host = useRef<HTMLDivElement>(null),
+    plot = useRef<uPlot | null>(null);
+  const onRef = useRef(onCursor);
+  onRef.current = onCursor;
+  useEffect(() => {
+    if (!host.current) return;
+    const a = decimate(
+      samples.filter((s) => s.time >= end - range * 3600000 && s.time <= end),
+    );
+    const times: number[] = [],
+      values: (number | null)[] = [];
+    let previous: Sample | null = null;
+    const gap =
+      metric === "kp"
+        ? 3 * 3600000
+        : samples[0]?.timeBasis === "bowShockShifted"
+          ? 90 * 60000
+          : metric === "proton"
+            ? 20 * 60000
+            : 10 * 60000;
+    for (const s of a) {
+      if (
+        previous &&
+        (s.time - previous.time > gap || s.spacecraft !== previous.spacecraft)
+      ) {
+        times.push((previous.time + s.time) / 2000);
+        values.push(null);
+      }
+      times.push(s.time / 1000);
+      values.push(s.quality === "rejected" ? null : s.value);
+      previous = s;
+    }
+    const log = metric === "xray" || metric === "proton";
+    const p = new uPlot(
+      {
+        width: host.current.clientWidth || 500,
+        height: 155,
+        legend: { show: false },
+        cursor: { drag: { x: false, y: false } },
+        scales: {
+          x: {
+            time: true,
+            min: (end - range * 3600000) / 1000,
+            max: end / 1000,
+          },
+          y: log ? { distr: 3 } : {},
+        },
+        axes: [
+          {
+            stroke: "#B8C6DB",
+            font: "12px sans-serif",
+            grid: { stroke: "#26354a" },
+            values: (_u, ticks) =>
+              ticks.map((t) => new Date(t * 1000).toISOString().slice(11, 16)),
+          },
+          {
+            stroke: "#B8C6DB",
+            font: "12px sans-serif",
+            grid: { stroke: "#26354a" },
+            size: 65,
+          },
+        ],
+        series: [
+          {},
+          {
+            label: metrics[metric][0],
+            stroke: metric === "bz" ? "#EAA1EF" : "#65DCF2",
+            width: 1.5,
+            dash: a.some((s) => s.evidenceType === "forecast")
+              ? [6, 4]
+              : undefined,
+            spanGaps: false,
+          },
+        ],
+        hooks: {
+          setCursor: [
+            (u) => {
+              if (u.cursor.idx != null && times[u.cursor.idx])
+                onRef.current(times[u.cursor.idx] * 1000);
+            },
+          ],
+          draw: [
+            (u) => {
+              const ctx = u.ctx;
+              ctx.save();
+              if (metric === "bz") {
+                ctx.strokeStyle = "#B8C6DB";
+                ctx.setLineDash([5, 5]);
+                const y = u.valToPos(0, "y", true);
+                ctx.beginPath();
+                ctx.moveTo(u.bbox.left, y);
+                ctx.lineTo(u.bbox.left + u.bbox.width, y);
+                ctx.stroke();
+              }
+              const boundary = a.find(
+                (s) => s.evidenceType === "forecast",
+              )?.time;
+              if (boundary) {
+                ctx.fillStyle = "#f7b65d18";
+                const x = u.valToPos(boundary / 1000, "x", true);
+                ctx.fillRect(
+                  x,
+                  u.bbox.top,
+                  u.bbox.left + u.bbox.width - x,
+                  u.bbox.height,
+                );
+              }
+              ctx.restore();
+            },
+          ],
+        },
+      },
+      [times, values],
+      host.current,
+    );
+    plot.current = p;
+    const observer = new ResizeObserver(() => {
+      if (host.current)
+        p.setSize({ width: host.current.clientWidth, height: 155 });
+    });
+    observer.observe(host.current);
+    return () => {
+      observer.disconnect();
+      p.destroy();
+      plot.current = null;
+    };
+  }, [samples, metric, range, end]);
+  useEffect(() => {
+    if (cursor !== null && plot.current) {
+      plot.current.setCursor(
+        { left: plot.current.valToPos(cursor / 1000, "x"), top: 60 },
+        false,
+      );
+    }
+  }, [cursor]);
+  return (
+    <div
+      className="chart"
+      aria-label={`${metrics[metric][0]} chart; ${metrics[metric][1]}. UTC axis. Use previous and next sample controls or data table.`}
+    >
+      <div className="chart-heading">
+        <b>{metrics[metric][0]}</b>
+        <span>
+          {metrics[metric][1]} · UTC ·{" "}
+          {samples.length > 1500
+            ? "Min/max reduced display"
+            : "Full display resolution"}
+        </span>
+      </div>
+      <div ref={host} />
+    </div>
+  );
 }

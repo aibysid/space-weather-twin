@@ -1,2 +1,30 @@
-import{readFile,writeFile}from'node:fs/promises';
-const evidence={verifiedAtUtc:new Date().toISOString(),source:'NASA HAPI raw responses acquired on GitHub runner 38058036848',comparisons:[]};for(const id of ['may2024','halloween2003','quiet2024']){const n=JSON.parse(await readFile(`public/history/${id}.json`)),r=JSON.parse(await readFile(`public/history/${id}.raw.json`));for(const i of [0,Math.floor(n.records.length/4),Math.floor(n.records.length/2),Math.floor(n.records.length*3/4),n.records.length-1]){const normalized=n.records[i],raw=r.data.find(x=>x[0]===normalized.timeUtc);evidence.comparisons.push({case:id,raw,parameters:r.parameters.map(p=>p.name),normalized})}}await writeFile('docs/history-validation.json',JSON.stringify(evidence,null,2));
+import { readFile, writeFile } from "node:fs/promises";
+const evidence = {
+  verifiedAtUtc: new Date().toISOString(),
+  source: "NASA HAPI raw responses acquired on GitHub runner 38058036848",
+  comparisons: [],
+};
+for (const id of ["may2024", "halloween2003", "quiet2024"]) {
+  const n = JSON.parse(await readFile(`public/history/${id}.json`)),
+    r = JSON.parse(await readFile(`public/history/${id}.raw.json`));
+  for (const i of [
+    0,
+    Math.floor(n.records.length / 4),
+    Math.floor(n.records.length / 2),
+    Math.floor((n.records.length * 3) / 4),
+    n.records.length - 1,
+  ]) {
+    const normalized = n.records[i],
+      raw = r.data.find((x) => x[0] === normalized.timeUtc);
+    evidence.comparisons.push({
+      case: id,
+      raw,
+      parameters: r.parameters.map((p) => p.name),
+      normalized,
+    });
+  }
+}
+await writeFile(
+  "docs/history-validation.json",
+  JSON.stringify(evidence, null, 2),
+);
