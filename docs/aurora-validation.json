@@ -1,0 +1,74 @@
+{
+  "verifiedAtUtc": "2026-10-10T14:17:15.393Z",
+  "adapter": "noaa-v1",
+  "method": "aurora-nearest-cell-v1",
+  "sourceUrl": "https://services.swpc.noaa.gov/json/ovation_aurora_latest.json",
+  "retrievedAtUtc": "2026-10-10T14:00:55.670Z",
+  "comparisons": [
+    {
+      "raw": [
+        180,
+        60,
+        3
+      ],
+      "normalizedLookup": {
+        "lat": 60,
+        "lon": -180,
+        "value": 3,
+        "distance": 7.0167092985348775e-15
+      }
+    },
+    {
+      "raw": [
+        179,
+        60,
+        3
+      ],
+      "normalizedLookup": {
+        "lat": 60,
+        "lon": 179,
+        "value": 3,
+        "distance": 0
+      }
+    },
+    {
+      "raw": [
+        0,
+        90,
+        0
+      ],
+      "normalizedLookup": {
+        "lat": 90,
+        "lon": 0,
+        "value": 0,
+        "distance": 0
+      }
+    },
+    {
+      "raw": [
+        0,
+        -90,
+        3
+      ],
+      "normalizedLookup": {
+        "lat": -90,
+        "lon": 0,
+        "value": 3,
+        "distance": 0
+      }
+    },
+    {
+      "raw": [
+        120,
+        -60,
+        6
+      ],
+      "normalizedLookup": {
+        "lat": -60,
+        "lon": 120,
+        "value": 6,
+        "distance": 0
+      }
+    }
+  ]
+}

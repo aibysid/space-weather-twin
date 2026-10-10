@@ -1,5 +1,6 @@
 import {describe,it,expect} from 'vitest';
-import {calculatePressure,calculateSouthwardProxy,calculateTransport,calculateCmeScenario,normalizeUtc,nearestPastSample,auroraGridLookup,solarPosition,replayClock} from '../src/science';
+import {calculatePressure,calculateSouthwardProxy,calculateTransport,calculateCmeScenario,normalizeUtc,nearestPastSample,auroraGridLookup,replayClock} from '../src/science';
+import {solarPosition} from '../src/solar';
 import {adapt} from '../src/adapters';
 import {shareState} from '../src/share';
 import {exportSerializers} from '../src/exports';
