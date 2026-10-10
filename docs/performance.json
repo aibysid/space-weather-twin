@@ -1,25 +1,30 @@
 {
-  "testedAtUtc": "2026-10-10T14:15:55.046Z",
+  "testedAtUtc": "2026-10-10T17:05:13.471Z",
   "measurement": "Node gzip of production assets; desktop build budget, not physical mobile performance certification",
-  "initialShellGzipBytes": 221217,
-  "lazySceneGzipBytes": 240569,
-  "siteBytes": 7134304,
-  "dataGzipBytes": 531913,
+  "initialShellGzipBytes": 224222,
+  "lazySceneGzipBytes": 241074,
+  "siteBytes": 7161896,
+  "dataGzipBytes": 530595,
   "files": [
     {
-      "path": "dist/assets/Scene-Dl9q_oFh.js",
-      "bytes": 913566,
-      "gzipBytes": 240569
+      "path": "dist/assets/Scene-DNCd9Ny7.js",
+      "bytes": 915025,
+      "gzipBytes": 241074
     },
     {
-      "path": "dist/assets/index-DsSC6vlI.js",
-      "bytes": 494102,
-      "gzipBytes": 166602
+      "path": "dist/assets/THIRD_PARTY_LICENSES.txt",
+      "bytes": 28125,
+      "gzipBytes": 2442
     },
     {
-      "path": "dist/assets/index-fCEh_-bZ.css",
-      "bytes": 12643,
-      "gzipBytes": 3469
+      "path": "dist/assets/index-Bx_YhCUT.js",
+      "bytes": 494726,
+      "gzipBytes": 167134
+    },
+    {
+      "path": "dist/assets/index-wK9b6qeM.css",
+      "bytes": 12773,
+      "gzipBytes": 3499
     },
     {
       "path": "dist/assets/land.json",
@@ -69,52 +74,52 @@
     {
       "path": "dist/index.html",
       "bytes": 841,
-      "gzipBytes": 493
+      "gzipBytes": 494
     },
     {
       "path": "dist/snapshots/aurora.json",
-      "bytes": 726784,
-      "gzipBytes": 164285
+      "bytes": 725223,
+      "gzipBytes": 162864
     },
     {
       "path": "dist/snapshots/forecast.json",
       "bytes": 6999,
-      "gzipBytes": 637
+      "gzipBytes": 638
     },
     {
       "path": "dist/snapshots/kp.json",
       "bytes": 4737,
-      "gzipBytes": 549
+      "gzipBytes": 550
     },
     {
       "path": "dist/snapshots/mag.json",
-      "bytes": 1415090,
-      "gzipBytes": 143201
+      "bytes": 1415406,
+      "gzipBytes": 143367
     },
     {
       "path": "dist/snapshots/manifest.json",
       "bytes": 1560,
-      "gzipBytes": 555
+      "gzipBytes": 551
     },
     {
       "path": "dist/snapshots/proton.json",
-      "bytes": 223724,
-      "gzipBytes": 30437
+      "bytes": 222949,
+      "gzipBytes": 30319
     },
     {
       "path": "dist/snapshots/scales.json",
-      "bytes": 1133,
-      "gzipBytes": 310
+      "bytes": 1134,
+      "gzipBytes": 306
     },
     {
       "path": "dist/snapshots/wind.json",
-      "bytes": 2522664,
-      "gzipBytes": 91514
+      "bytes": 2521943,
+      "gzipBytes": 91530
     },
     {
       "path": "dist/snapshots/xray.json",
-      "bytes": 609512,
-      "gzipBytes": 100425
+      "bytes": 609506,
+      "gzipBytes": 100470
     }
   ]
 }

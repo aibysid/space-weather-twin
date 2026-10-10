@@ -1,0 +1,102 @@
+{
+  "testedAtUtc": "2026-10-10T14:18:37.850Z",
+  "base": "http://127.0.0.1:5173/space-weather-twin/",
+  "browsers": [
+    {
+      "name": "chromium",
+      "version": "156.0.8078.4",
+      "routes": [
+        {
+          "route": "live",
+          "title": "A connected view of space weather",
+          "noOverflow": true
+        },
+        {
+          "route": "aurora",
+          "title": "Aurora forecast",
+          "noOverflow": true
+        },
+        {
+          "route": "replay",
+          "title": "Replay observations",
+          "noOverflow": true
+        },
+        {
+          "route": "lab",
+          "title": "What if conditions changed?",
+          "noOverflow": true
+        },
+        {
+          "route": "sources",
+          "title": "Know what you’re looking at",
+          "noOverflow": true
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "firefox",
+      "version": "157.0",
+      "routes": [
+        {
+          "route": "live",
+          "title": "A connected view of space weather",
+          "noOverflow": true
+        },
+        {
+          "route": "aurora",
+          "title": "Aurora forecast",
+          "noOverflow": true
+        },
+        {
+          "route": "replay",
+          "title": "Replay observations",
+          "noOverflow": true
+        },
+        {
+          "route": "lab",
+          "title": "What if conditions changed?",
+          "noOverflow": true
+        },
+        {
+          "route": "sources",
+          "title": "Know what you’re looking at",
+          "noOverflow": true
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "webkit",
+      "version": "27.2",
+      "routes": [
+        {
+          "route": "live",
+          "title": "A connected view of space weather",
+          "noOverflow": true
+        },
+        {
+          "route": "aurora",
+          "title": "Aurora forecast",
+          "noOverflow": true
+        },
+        {
+          "route": "replay",
+          "title": "Replay observations",
+          "noOverflow": true
+        },
+        {
+          "route": "lab",
+          "title": "What if conditions changed?",
+          "noOverflow": true
+        },
+        {
+          "route": "sources",
+          "title": "Know what you’re looking at",
+          "noOverflow": true
+        }
+      ],
+      "errors": []
+    }
+  ]
+}
