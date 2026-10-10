@@ -1,5 +1,5 @@
 {
-  "testedAtUtc": "2026-10-10T17:05:34.009Z",
+  "testedAtUtc": "2026-10-10T17:24:35.255Z",
   "origin": "https://aibysid.github.io",
   "browser": "156.0.8078.4",
   "method": "Fresh Chromium context, native anonymous browser fetch from deployed Pages origin; no proxy, key or fixture interception",
@@ -9,7 +9,7 @@
       "status": 200,
       "responseType": "cors",
       "sourceUrl": "https://services.swpc.noaa.gov/json/rtsw/rtsw_wind_1m.json",
-      "retrievedAtUtc": "2026-10-10T17:05:33.898Z",
+      "retrievedAtUtc": "2026-10-10T17:24:34.873Z",
       "records": 3731,
       "fields": [
         "time_tag",
@@ -50,8 +50,8 @@
       "status": 200,
       "responseType": "cors",
       "sourceUrl": "https://services.swpc.noaa.gov/json/rtsw/rtsw_mag_1m.json",
-      "retrievedAtUtc": "2026-10-10T17:05:33.702Z",
-      "records": 3699,
+      "retrievedAtUtc": "2026-10-10T17:24:35.147Z",
+      "records": 3695,
       "fields": [
         "time_tag",
         "active",
@@ -82,7 +82,7 @@
       "status": 200,
       "responseType": "cors",
       "sourceUrl": "https://services.swpc.noaa.gov/products/noaa-scales.json",
-      "retrievedAtUtc": "2026-10-10T17:05:33.271Z",
+      "retrievedAtUtc": "2026-10-10T17:24:34.526Z",
       "records": 1,
       "fields": [
         "0",
@@ -97,7 +97,7 @@
       "status": 200,
       "responseType": "cors",
       "sourceUrl": "https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json",
-      "retrievedAtUtc": "2026-10-10T17:05:33.815Z",
+      "retrievedAtUtc": "2026-10-10T17:24:35.244Z",
       "records": 61,
       "fields": [
         "time_tag",
@@ -111,7 +111,7 @@
       "status": 200,
       "responseType": "cors",
       "sourceUrl": "https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json",
-      "retrievedAtUtc": "2026-10-10T17:05:33.271Z",
+      "retrievedAtUtc": "2026-10-10T17:24:35.244Z",
       "records": 81,
       "fields": [
         "time_tag",
@@ -125,7 +125,7 @@
       "status": 200,
       "responseType": "cors",
       "sourceUrl": "https://services.swpc.noaa.gov/json/goes/primary/xrays-1-day.json",
-      "retrievedAtUtc": "2026-10-10T17:05:33.815Z",
+      "retrievedAtUtc": "2026-10-10T17:24:35.007Z",
       "records": 2876,
       "fields": [
         "time_tag",
@@ -142,7 +142,7 @@
       "status": 200,
       "responseType": "cors",
       "sourceUrl": "https://services.swpc.noaa.gov/json/goes/primary/integral-protons-1-day.json",
-      "retrievedAtUtc": "2026-10-10T17:05:34.005Z",
+      "retrievedAtUtc": "2026-10-10T17:24:35.251Z",
       "records": 2296,
       "fields": [
         "time_tag",
@@ -156,7 +156,7 @@
       "status": 200,
       "responseType": "cors",
       "sourceUrl": "https://services.swpc.noaa.gov/json/ovation_aurora_latest.json",
-      "retrievedAtUtc": "2026-10-10T17:05:33.994Z",
+      "retrievedAtUtc": "2026-10-10T17:24:35.244Z",
       "records": 65160,
       "fields": [
         "Observation Time",
@@ -166,8 +166,8 @@
         "type"
       ],
       "auroraTimes": {
-        "observation": "2026-10-10T16:55:00Z",
-        "forecast": "2026-10-10T17:40:00Z"
+        "observation": "2026-10-10T17:12:00Z",
+        "forecast": "2026-10-10T17:57:00Z"
       }
     }
   ],

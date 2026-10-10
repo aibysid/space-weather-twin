@@ -94,6 +94,11 @@ report.backForwardWorks = (await page.locator("h1").textContent()).includes(
 );
 await page.setViewportSize({ width: 360, height: 900 });
 await page.goto(base + "#/live");
+await page.waitForFunction(
+  () =>
+    document.querySelector(".rail > .muted")?.textContent?.startsWith("8/8"),
+  { timeout: 30000 },
+);
 await page.locator(".metric-card strong").first().waitFor();
 await page.waitForFunction(
   () => document.querySelector(".metric-card strong")?.textContent !== "—",
