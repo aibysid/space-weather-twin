@@ -159,6 +159,12 @@
     }
   },
   {
+    "name": "prettier",
+    "version": "3.9.10",
+    "license": "MIT",
+    "repository": "prettier/prettier"
+  },
+  {
     "name": "tsx",
     "version": "4.20.6",
     "license": "MIT",

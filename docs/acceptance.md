@@ -4,7 +4,7 @@ Evidence collected 2026-10-10 UTC. Adapter noaa-v1, OMNI adapter omni-v1, datase
 
 | Gate | Evidence and result |
 |---|---|
-| A01 | HashRouter, project base, refresh/back browser tests; production check to be attached. |
+| A01 | HashRouter, project base, refresh/back browser tests; deployed production refresh/back check passed; production-integration.json. |
 | A02 | All eight current object feeds returned HTTP 200; integration.json fields and CORS headers; legacy URLs absent from source. |
 | A03 | Unit tests require boolean active, source switches, ambiguity rejection. |
 | A04 | GSE-only fixture yields unavailable GSM Bz. |
@@ -19,11 +19,11 @@ Evidence collected 2026-10-10 UTC. Adapter noaa-v1, OMNI adapter omni-v1, datase
 | A13 | Numeric/string metadata fills mapped null; half-hour tags preserved; source bow-shock basis retained. |
 | A14 | Browser replay start/end, reset/play and keyboard scrubbing; data selector tests cover gaps and past-only. |
 | A15 | Browser historical mode shows unavailable GOES, scales, aurora. |
-| A16 | Seam conflict/normalization, both poles and missing-cell lookup unit fixtures. Raw five-cell evidence and independent solar checks attached separately. |
+| A16 | Seam conflict/normalization, both poles and missing-cell lookup unit fixtures. Five raw cells including seam/north/south agree (aurora-validation.json); independent equinox, opposite longitude and polar checks pass. |
 | A17 | Separate observation/valid times and expiry logic; solar altitude day/night tests for equinox/opposite longitude/polar season. |
 | A18 | Browser unsaved edits leave baseline; apply/export verifies new pressure; observations never mutated. |
-| A19 | Initial anonymous Node integration all 8 HTTP 200 with wildcard CORS; production-origin browser check required separately. |
-| A20 | Unit HTTP404/malformed/oversize/empty/schema/cache checks; browser HTTP429 snapshot recovery; timeout follows AbortError state. |
+| A19 | Initial anonymous Node integration all 8 HTTP 200 with wildcard CORS; all eight returned HTTP 200/CORS from deployed Pages origin in production-integration.json. |
+| A20 | Unit HTTP404/malformed/oversize/empty/schema/cache checks; browser HTTP429 snapshot recovery; timeout/schema/empty/quality categories and Retry-After pass independent tests even when fallback fails. |
 | A21 | Original snapshot retrieval retained under network failure; UI transport and age labels. |
 | A22 | Unit hidden scheduler, due-only and overlap checks; visibility handler suspends polling/replay. |
 | A23 | SVG usable without WebGL; context-loss handler swaps renderer; manual choice available. |
@@ -35,11 +35,17 @@ Evidence collected 2026-10-10 UTC. Adapter noaa-v1, OMNI adapter omni-v1, datase
 | A29 | Bounded share tests and old recent URL explicitly unavailable; historical version mismatch requires case selection. |
 | A30 | Geolocation only from clicked control; permission refusal message; preferences-only localStorage. |
 | A31 | Compressed build budgets measured; initial scene lazy; real physical mobile device FPS/10 Mbps certification remains outside automated desktop emulation. |
-| A32 | Atomic per-feed snapshot script retains previous valid files, data-cache persistence, serialized full Pages deployments; manual workflow check required. |
+| A32 | Atomic per-feed snapshot script retains previous valid files, data-cache persistence, serialized full Pages deployments; manual snapshot run 38070327350 successfully acquired, persisted and deployed all eight feeds. |
 | A33 | Exact lockfile; lint/typecheck/unit/E2E/build; history --from-raw deterministic; clean GitHub runner checks. |
 | A34 | Credential-free APIs, no tracking or paid service, explicit science labels; npm audit zero at verification. |
 | A35 | README, methods, architecture, runbook, decisions, attribution and license inventory. |
-| A36 | Public Pages configuration exists; production deployment/fresh session verification to be attached. |
+| A36 | Public Pages deployments passed (38059015388, 38070301753); fresh Chromium production session verifies every feed and route; screenshots in docs/screenshots. |
+
+## Check outputs
+
+31 deterministic tests pass; ten fixture-driven Chromium browser flows pass. Lint and strict typecheck pass. Dependency audit has zero reported vulnerabilities. Axe has no serious/critical findings across five routes at 360/768/1280/1440 px. Cross-browser smoke passed all routes in Chromium, Firefox and WebKit (cross-browser.json). These browsers are Playwright engines, not a claim that physical Safari/iOS/Android devices were used. Build budget: approximately 0.22 MB initial compressed app, 0.24 MB lazy scene and 7.2 MB complete published files.
+
+The source is a release candidate until the manual certifications below are completed. Automated and production integration work is complete; A25/A31 manual evidence is explicitly open. No acceptance gate is silently waived.
 
 ## Verification limits
 

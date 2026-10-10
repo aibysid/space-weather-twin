@@ -2,6 +2,8 @@
 
 An educational Sun–Earth dashboard combining independent NOAA observations, provider aurora/Kp forecasts, NASA OMNI replay, and hypothetical calculations. It is not an operational forecast or validated physical digital twin.
 
+[Open the public application](https://aibysid.github.io/space-weather-twin/#/live) · [Source repository](https://github.com/aibysid/space-weather-twin)
+
 ## Run locally
 
 Use Node 24 LTS and npm. `npm ci`, `npm run dev`. Open the printed `/space-weather-twin/` URL. Production: `npm run build`, `npm run preview`.

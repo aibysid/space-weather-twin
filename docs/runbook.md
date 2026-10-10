@@ -27,3 +27,5 @@ Capture raw provider fixture; compare official notice; revise adapterVersion, no
 ## Maintenance
 
 Periodically inspect schema and dependency changes, schedules and Pages status. Manual snapshot dispatch requires repository Actions write access. Check `npm audit`. Review Pages free-tier limits (published site target 50 MB; initial app compressed 2 MB; initial data 8 MB). Reduce assets/polling or show user limits when growth threatens free limits; never enable billing automatically. No service worker, continuous history store or database.
+
+Verification scripts: `node scripts/production-verify.mjs` records anonymous production-origin checks and screenshots; `node scripts/cross-browser.mjs` checks installed Chromium/Firefox/WebKit engines; `node scripts/budget-evidence.mjs` records compressed production sizes. `npx tsx scripts/aurora-evidence.mjs` compares five raw grid cells. Only run real-service scripts for intended release/maintenance checks, not in deterministic unit tests.

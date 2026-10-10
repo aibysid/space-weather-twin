@@ -177,10 +177,20 @@ function Bodies({
     </>
   );
 }
-function PerformanceMonitor({ onSlow }: { onSlow: () => void }) {
+function PerformanceMonitor({
+  onSlow,
+  enabled,
+}: {
+  onSlow: () => void;
+  enabled: boolean;
+}) {
   const slow = useRef(0),
     reported = useRef(false);
   useFrame((_, dt) => {
+    if (!enabled) {
+      slow.current = 0;
+      return;
+    }
     slow.current = dt > 0.05 ? slow.current + Math.min(dt, 0.2) : 0;
     if (slow.current >= 5 && !reported.current) {
       reported.current = true;
@@ -254,7 +264,10 @@ export default function Scene({
           };
         }}
       >
-        <PerformanceMonitor onSlow={onSlow} />
+        <PerformanceMonitor
+          enabled={!paused && visible && tabVisible}
+          onSlow={onSlow}
+        />
         <group rotation={[0, rotation, 0]}>
           <Bodies
             earth={earth}
