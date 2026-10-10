@@ -1,0 +1,206 @@
+[
+  {
+    "name": "@react-three/fiber",
+    "version": "9.8.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/pmndrs/react-three-fiber.git"
+    }
+  },
+  {
+    "name": "astronomy-engine",
+    "version": "2.1.19",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/cosinekitty/astronomy.git"
+    }
+  },
+  {
+    "name": "react",
+    "version": "19.3.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/react/react.git",
+      "directory": "packages/react"
+    }
+  },
+  {
+    "name": "react-dom",
+    "version": "19.3.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/react/react.git",
+      "directory": "packages/react-dom"
+    }
+  },
+  {
+    "name": "react-router-dom",
+    "version": "7.18.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/remix-run/react-router",
+      "directory": "packages/react-router-dom"
+    }
+  },
+  {
+    "name": "three",
+    "version": "0.186.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/mrdoob/three.js"
+    }
+  },
+  {
+    "name": "uplot",
+    "version": "1.6.32",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/leeoniya/uPlot.git"
+    }
+  },
+  {
+    "name": "zod",
+    "version": "4.6.5",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/colinhacks/zod.git"
+    }
+  },
+  {
+    "name": "@axe-core/playwright",
+    "version": "4.13.0",
+    "license": "MPL-2.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/dequelabs/axe-core-npm.git"
+    }
+  },
+  {
+    "name": "@eslint/js",
+    "version": "10.0.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/eslint/eslint.git",
+      "directory": "packages/js"
+    }
+  },
+  {
+    "name": "@playwright/test",
+    "version": "1.64.0",
+    "license": "Apache-2.0",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/microsoft/playwright.git"
+    }
+  },
+  {
+    "name": "@types/node",
+    "version": "26.6.5",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "directory": "types/node"
+    }
+  },
+  {
+    "name": "@types/react",
+    "version": "19.3.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "directory": "types/react"
+    }
+  },
+  {
+    "name": "@types/react-dom",
+    "version": "19.3.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "directory": "types/react-dom"
+    }
+  },
+  {
+    "name": "@types/three",
+    "version": "0.186.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "directory": "types/three"
+    }
+  },
+  {
+    "name": "eslint",
+    "version": "10.12.0",
+    "license": "MIT",
+    "repository": "eslint/eslint"
+  },
+  {
+    "name": "eslint-plugin-react-hooks",
+    "version": "7.1.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/facebook/react.git",
+      "directory": "packages/eslint-plugin-react-hooks"
+    }
+  },
+  {
+    "name": "tsx",
+    "version": "4.20.6",
+    "license": "MIT",
+    "repository": "privatenumber/tsx"
+  },
+  {
+    "name": "typescript",
+    "version": "6.0.3",
+    "license": "Apache-2.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/microsoft/TypeScript.git"
+    }
+  },
+  {
+    "name": "typescript-eslint",
+    "version": "8.71.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/typescript-eslint/typescript-eslint.git",
+      "directory": "packages/typescript-eslint"
+    }
+  },
+  {
+    "name": "vite",
+    "version": "8.3.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/vitejs/vite.git",
+      "directory": "packages/vite"
+    }
+  },
+  {
+    "name": "vitest",
+    "version": "5.0.3",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/vitest-dev/vitest.git",
+      "directory": "packages/vitest"
+    }
+  }
+]

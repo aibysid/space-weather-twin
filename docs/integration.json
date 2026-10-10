@@ -1,0 +1,173 @@
+{
+  "testedAtUtc": "2026-10-10T14:03:44.816Z",
+  "method": "Node anonymous fetch; deployed browser origin checked separately",
+  "feeds": [
+    {
+      "id": "wind",
+      "url": "https://services.swpc.noaa.gov/json/rtsw/rtsw_wind_1m.json",
+      "status": 200,
+      "cors": "*",
+      "bytes": 2755326,
+      "recordCount": 3725,
+      "fields": [
+        "time_tag",
+        "active",
+        "source",
+        "proton_speed",
+        "proton_temperature",
+        "proton_density",
+        "proton_vx_gse",
+        "proton_vy_gse",
+        "proton_vz_gse",
+        "proton_vx_gsm",
+        "proton_vy_gsm",
+        "proton_vz_gsm",
+        "proton_sample_size",
+        "alpha_speed",
+        "alpha_temperature",
+        "alpha_density",
+        "alpha_vx_gse",
+        "alpha_vy_gse",
+        "alpha_vz_gse",
+        "alpha_vx_gsm",
+        "alpha_vy_gsm",
+        "alpha_vz_gsm",
+        "alpha_sample_size",
+        "max_convergence_flag",
+        "max_data_flag",
+        "max_error_count_flag",
+        "max_processing_flag",
+        "max_range_flag",
+        "max_sample_count_flag",
+        "max_telemetry_flag",
+        "overall_quality"
+      ]
+    },
+    {
+      "id": "mag",
+      "url": "https://services.swpc.noaa.gov/json/rtsw/rtsw_mag_1m.json",
+      "status": 200,
+      "cors": "*",
+      "bytes": 1579387,
+      "recordCount": 3719,
+      "fields": [
+        "time_tag",
+        "active",
+        "source",
+        "range",
+        "scale",
+        "sensitivity",
+        "manual_mode",
+        "sample_size",
+        "bt",
+        "bx_gse",
+        "by_gse",
+        "bz_gse",
+        "theta_gse",
+        "phi_gse",
+        "bx_gsm",
+        "by_gsm",
+        "bz_gsm",
+        "theta_gsm",
+        "phi_gsm",
+        "max_telemetry_flag",
+        "max_data_flag",
+        "overall_quality"
+      ]
+    },
+    {
+      "id": "scales",
+      "url": "https://services.swpc.noaa.gov/products/noaa-scales.json",
+      "status": 200,
+      "cors": "*",
+      "bytes": 1112,
+      "recordCount": 1,
+      "fields": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "-1"
+      ]
+    },
+    {
+      "id": "kp",
+      "url": "https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json",
+      "status": 200,
+      "cors": "*",
+      "bytes": 4648,
+      "recordCount": 60,
+      "fields": [
+        "time_tag",
+        "Kp",
+        "a_running",
+        "station_count"
+      ]
+    },
+    {
+      "id": "forecast",
+      "url": "https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json",
+      "status": 200,
+      "cors": "*",
+      "bytes": 6907,
+      "recordCount": 81,
+      "fields": [
+        "time_tag",
+        "kp",
+        "observed",
+        "noaa_scale"
+      ],
+      "statuses": [
+        "observed",
+        "estimated",
+        "predicted"
+      ]
+    },
+    {
+      "id": "xray",
+      "url": "https://services.swpc.noaa.gov/json/goes/primary/xrays-1-day.json",
+      "status": 200,
+      "cors": "*",
+      "bytes": 653460,
+      "recordCount": 2872,
+      "fields": [
+        "time_tag",
+        "satellite",
+        "flux",
+        "observed_flux",
+        "electron_correction",
+        "electron_contaminaton",
+        "energy"
+      ]
+    },
+    {
+      "id": "proton",
+      "url": "https://services.swpc.noaa.gov/json/goes/primary/integral-protons-1-day.json",
+      "status": 200,
+      "cors": "*",
+      "bytes": 241921,
+      "recordCount": 2296,
+      "fields": [
+        "time_tag",
+        "satellite",
+        "flux",
+        "energy"
+      ]
+    },
+    {
+      "id": "aurora",
+      "url": "https://services.swpc.noaa.gov/json/ovation_aurora_latest.json",
+      "status": 200,
+      "cors": "*",
+      "bytes": 921673,
+      "recordCount": 65160,
+      "fields": [
+        "Observation Time",
+        "Forecast Time",
+        "Data Format",
+        "coordinates",
+        "type"
+      ]
+    }
+  ]
+}

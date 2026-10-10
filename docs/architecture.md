@@ -1,0 +1,11 @@
+# Architecture and normalized schemas
+
+Static React, strict TypeScript, Vite project base, HashRouter. FetchCoordinator owns independent NOAA state machines, bounded response decoding, per-feed scheduling, cancellation, cooldown, hidden-tab suspension, retry and snapshot recovery. `adapt` uses Zod at network boundaries, then source-specific semantic validation. Raw flags stay attached to normalized samples. Adapters retain full source URL, retrieval time and transport. Stable identity collapses exact duplicates; conflicting duplicates and simultaneous active sources are rejected.
+
+Normalized Sample: id, feedId, epoch time and ISO UTC, retrievedAtUtc, observedAtUtc or validAtUtc, spacecraft, sourceUrl, metric, value|null, unit, coordinateFrame GSM|null, evidenceType, quality and reasons, rawFlags, timeBasis, adapterVersion, transport, provider status. Envelope: schemaVersion, feedId, retrieval/provider issue, adapter version, count/rejections, source URL. Aurora: keyed geographic cells and separate observation/forecast clocks. Current scales use branch 0 only.
+
+UI reads one selected clock. Replay uses a monotonic animation frame delta and immutable normalized records; future records never enter cursor values. Scenario drafts only become applied after validation. Pure science functions handle all unit conversions. CSV and JSON consume the same selected state. Charts use spike-preserving min/max decimation with breaks. Full-resolution exports and tables remain available.
+
+Three.js/R3F is lazy-loaded. Procedural Sun and local Natural Earth geography avoid runtime asset requests. SVG and polar map provide WebGL-independent operation. Capture renders a fresh WebGL frame on demand without preserveDrawingBuffer. Solar geometry uses Astronomy Engine at the selected UTC clock. Polar maps preserve seam/hemisphere conventions and missing cells. uPlot uses explicit UTC tick formatting.
+
+Security: credential-free allowlisted NOAA host; static same-origin cache; 15 MB response and 100,000 row limits; bounded allowlisted share parameters; no provider HTML injection; CSV formula mitigation; meta CSP; no user tracking or location persistence. Only first-use help dismissal uses localStorage. Errors appear as safe messages rather than raw stack traces.

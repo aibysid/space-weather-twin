@@ -1,1 +1,0 @@
-{"root":["./src/chart.tsx","./src/scene.tsx","./src/visuals.tsx","./src/adapters.ts","./src/coordinator.ts","./src/exports.ts","./src/main.tsx","./src/registry.ts","./src/science.ts","./src/share.ts","./src/vite-env.d.ts","./vite.config.ts"],"errors":true,"version":"6.0.3"}
