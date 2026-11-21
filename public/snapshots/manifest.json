@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "generatedAtUtc": "2026-11-21T17:28:55.316Z",
+  "feeds": {
+    "wind": {
+      "retrievedAtUtc": "2026-11-21T17:28:55.533Z",
+      "sha256": "15b0fc209e4e92f8b86851fa7240027102572cffe010abd1b653cb759d5bf806",
+      "status": "updated"
+    },
+    "mag": {
+      "retrievedAtUtc": "2026-11-21T17:28:55.702Z",
+      "sha256": "bda8963e7c91232585af7533ae21d609e768b3be9a3749d2f2beb94b81846f4c",
+      "status": "updated"
+    },
+    "scales": {
+      "retrievedAtUtc": "2026-11-21T17:28:55.812Z",
+      "sha256": "1856a364aa443b4d94960a203b247d8b844232cd354d956ae86bfd6dbb4ad229",
+      "status": "updated"
+    },
+    "kp": {
+      "retrievedAtUtc": "2026-11-21T17:28:55.821Z",
+      "sha256": "bf22de3464edba963d7790101c08730e328d21bf99d2d8212de0c00bb7d1b58d",
+      "status": "updated"
+    },
+    "forecast": {
+      "retrievedAtUtc": "2026-11-21T17:28:55.831Z",
+      "sha256": "3d966357bb2a5dc4488f5c35e7f066e0ccb9b545b2e0c56b1c5ff36ade8a3d32",
+      "status": "updated"
+    },
+    "xray": {
+      "retrievedAtUtc": "2026-11-21T17:28:55.845Z",
+      "sha256": "c056c309ea05de5333c01aba062bf79f76878c669155c80c9d4bcf3f5999c248",
+      "status": "updated"
+    },
+    "proton": {
+      "retrievedAtUtc": "2026-11-21T17:28:55.872Z",
+      "sha256": "6e53bc1a3b19ceb996f3c027fcac287fe04a991f824657370d5a3868299608b4",
+      "status": "updated"
+    },
+    "aurora": {
+      "retrievedAtUtc": "2026-11-21T17:28:55.899Z",
+      "sha256": "6042ba2747cb173af8546ccb89bee3f270ec81d5adfdecc9c35c50fb96538a76",
+      "status": "updated"
+    }
+  }
+}
